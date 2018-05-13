@@ -1,0 +1,214 @@
+@import normalize
+@import fonts
+
+$main-font: "Trebuchet MS"
+$added-font: "exo2"
+
+$color-blue: #1698d9
+$color-red: #d91667
+$color-yellow: #ffff66
+$color-grey: #666
+
+=opacity-black-gradient()
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%)
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0.5) 100%)
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0.5) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', endColorstr='#80000000',GradientType=0 )
+
+body
+  font-family: $main-font
+  background-image: url('../img/body-bg.jpg')
+
+.main-site-wrapper
+  display: flex
+  justify-content: center
+  align-items: center
+  min-height: 100vh
+  +opacity-black-gradient
+
+  @media (max-width: 1024px)
+    align-items: left
+
+.carts-container--header
+  font-size: 36px
+  color: #fff
+  font-family: $added-font
+  font-weight: lighter
+  text-align: center
+  margin-bottom: 30px
+
+.container
+  width: 1120px
+
+.product-cart-container
+  width: 100%
+  display: flex
+  justify-content: space-between
+
+  @media (max-width: 1024px)
+    flex-wrap: wrap
+    justify-content: space-around
+
+.product-cart
+  @media (max-width: 1024px)
+    margin-bottom: 30px
+    
+    &:first-child
+      width: 100%
+      display: flex
+      justify-content: space-around
+
+  input[type=checkbox]
+    display: none
+
+    + label
+      position: relative
+      display: block
+      height: 480px
+      width: 320px
+      padding: 25px 50px
+      background: url('../img/default.png') 0 0 no-repeat
+      box-sizing: border-box
+      cursor: pointer
+      margin-bottom: 20px
+
+      + .added-info
+        div
+          display: none
+
+        div.pc-default
+          display: block
+
+      &:hover
+        background: url('../img/default.png') -320px 0 no-repeat
+
+  input[type=checkbox]:checked
+    + label
+      background: url('../img/selected.png') 0 0 no-repeat
+
+      + .added-info
+        div
+          display: none
+
+        div.pc-selected
+          display: block
+      
+    &:hover
+      + label
+        background: url('../img/selected.png') -320px 0 no-repeat
+
+  input[type=checkbox]:disabled
+    + label
+      background: url('../img/disabled.png') no-repeat
+      cursor: default
+
+      + .added-info
+        div
+          display: none
+        div.pc-disabled
+          display: block
+
+  .added-info
+    .pc-default
+      color: #fff
+      text-align: center
+      font-size: 13px
+
+      label
+        color: $color-blue
+        border-bottom: 1px dashed $color-blue
+        cursor: pointer
+        transition: 0.4s
+
+        &:hover
+          color: $color-red
+          border-bottom: 1px dashed $color-red
+
+    .pc-selected
+      color: #fff
+      text-align: center
+      font-size: 13px
+
+    .pc-disabled
+      color: $color-yellow
+      text-align: center
+      font-size: 13px
+
+.product-cart
+  &__up-title
+    color: $color-grey
+    font-size:  16px
+    margin-bottom: 15px
+
+  &__title
+    color: #000
+    font-size: 48px
+    font-weight: bold
+    line-height: 1
+    margin-bottom: 10px
+
+  &__sub-title
+    color: #000
+    font-size: 24px
+    font-weight: bold
+    line-height: 1
+    margin-bottom: 15px
+
+  &__description
+    p
+      font-size: 14px
+      color: $color-grey
+      margin: 0
+
+      span
+        font-weight: bold
+
+  input[type=checkbox]:disabled
+    + label
+      .product-cart__up-title,
+      .product-cart__title,
+      .product-cart__sub-title,
+      .product-cart__description
+        opacity: 0.5
+
+.product-cart
+  label
+    .product-cart__weight
+      box-sizing: border-box
+      position: absolute
+      bottom: 15px
+      right: 15px
+      background-color: $color-blue
+      color: #fff
+      border-radius: 50%
+      text-align: center
+      height: 80px
+      width: 80px
+      padding-top: 6px
+
+      p
+        font-size: 40px
+        margin: 0
+        font-weight: normal
+
+        + p
+          font-size: 21px
+    &:hover
+      .product-cart__weight
+        background-color: #2ea8e6
+
+  input[type=checkbox]:checked
+    + label
+      .product-cart__weight
+        background-color: #fd0e69
+
+      &:hover
+        .product-cart__weight
+         background-color: #ff2a7d
+
+  input[type=checkbox]:disabled
+    + label
+      .product-cart__weight
+        background-color: #b3b3b3
+
+
